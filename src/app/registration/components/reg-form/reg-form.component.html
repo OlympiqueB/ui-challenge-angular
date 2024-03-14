@@ -7,7 +7,7 @@
           type="text"
           class="form-control"
           [class]="
-            username?.value && username?.touched
+            username?.value && username?.dirty
               ? username?.valid && !(backendErrors && backendErrors.username)
                 ? 'is-valid'
                 : 'is-invalid'
@@ -30,7 +30,7 @@
           type="text"
           class="form-control"
           [class]="
-            email?.value && email?.touched
+            email?.value && email?.dirty
               ? email?.valid
                 ? 'is-valid'
                 : 'is-invalid'
@@ -41,16 +41,16 @@
           placeholder="Email"
         />
         <label for="emailInput" class="form-label">Email</label>
+        <div *ngIf="backendErrors && backendErrors.email" class="invalid-feedback">
+          {{ backendErrors.email }}
+        </div>
       </div>
-      <small *ngIf="backendErrors && backendErrors.email" class="text-danger">
-        {{ backendErrors.email }}
-      </small>
       <div class="form-floating mt-3">
         <input
           type="password"
           class="form-control"
           [class]="
-            password?.value && password?.touched
+            password?.value && password?.dirty
               ? password?.valid
                 ? 'is-valid'
                 : 'is-invalid'
@@ -61,19 +61,20 @@
           placeholder="Password"
         />
         <label for="passwordInput" class="form-label">Password</label>
-      </div>
-      <small
+        <div
         *ngIf="backendErrors && backendErrors.password"
-        class="text-danger"
+        class="invalid-feedback"
       >
         {{ backendErrors.password }}
-      </small>
+      </div>
+      </div>
+
       <div class="form-floating mt-3">
         <input
           type="password"
           class="form-control"
           [class]="
-            confirmPassword?.value && confirmPassword?.touched
+            confirmPassword?.value && confirmPassword?.dirty
               ? confirmPassword?.valid
                 ? 'is-valid'
                 : 'is-invalid'
@@ -86,13 +87,14 @@
         <label for="confirmPasswordInput" class="form-label"
           >Confirm password</label
         >
-      </div>
-      <small
-        *ngIf="confirmPassword?.errors?.['passwordNotConfirmed'] && confirmPassword?.touched && confirmPassword?.value"
-        class="small text-danger"
+        <div
+        *ngIf="confirmPassword?.errors?.['passwordNotConfirmed'] && confirmPassword?.dirty && confirmPassword?.value"
+        class="invalid-feedback"
       >
         Password does not match.
-      </small>
+      </div>
+      </div>
+
       <button
         type="click"
         class="btn btn-primary mt-3"

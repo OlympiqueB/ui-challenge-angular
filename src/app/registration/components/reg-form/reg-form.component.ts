@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UserModel } from 'src/app/core/models/user.model';
-import { RegistrationService } from 'src/app/core/services/registration.service';
+import { RegistrationService } from 'src/app/core/services/registration/registration.service';
 
 @Component({
   selector: 'app-reg-form',
