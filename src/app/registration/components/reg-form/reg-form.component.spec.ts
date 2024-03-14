@@ -9,7 +9,7 @@ import {
 import { RegFormComponent } from './reg-form.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ReactiveFormsModule } from '@angular/forms';
-import { RegistrationService } from 'src/app/core/services/registration.service';
+import { RegistrationService } from 'src/app/core/services/registration/registration.service';
 import { of } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
 
