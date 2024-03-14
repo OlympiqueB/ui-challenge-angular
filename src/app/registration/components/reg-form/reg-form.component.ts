@@ -119,6 +119,12 @@ export class RegFormComponent implements OnDestroy {
   }
 
   ngOnDestroy(): void {
+    if (this.usernameInputSubscription) {
+      this.usernameInputSubscription.unsubscribe();
+    }
+    if (this.emailInputSubscription) {
+      this.emailInputSubscription.unsubscribe();
+    }
     if (this.pwInputSubscription) {
       this.pwInputSubscription.unsubscribe();
     }

@@ -1,4 +1,10 @@
-import { ComponentFixture, TestBed, fakeAsync, flush, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture,
+  TestBed,
+  fakeAsync,
+  flush,
+  waitForAsync,
+} from '@angular/core/testing';
 
 import { RegFormComponent } from './reg-form.component';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
@@ -114,7 +120,7 @@ describe('RegFormComponent', () => {
     confirmPassword.setValue('password123');
 
     fixture.detectChanges();
-    
+
     const button = fixture.nativeElement.querySelector('button[type="click"]');
     button.click();
     expect(component.submitForm).toHaveBeenCalled();
@@ -159,9 +165,15 @@ describe('RegFormComponent', () => {
     });
   }));
 
-  it('should unsubscribe from pwInputSubscription on component destruction', () => {
+  it('should unsubscribe from all subscriptions on component destruction', () => {
+    spyOn(component.usernameInputSubscription!, 'unsubscribe');
+    spyOn(component.emailInputSubscription!, 'unsubscribe');
     spyOn(component.pwInputSubscription!, 'unsubscribe');
+
     component.ngOnDestroy();
+
+    expect(component.usernameInputSubscription!.unsubscribe).toHaveBeenCalled();
+    expect(component.emailInputSubscription!.unsubscribe).toHaveBeenCalled();
     expect(component.pwInputSubscription!.unsubscribe).toHaveBeenCalled();
   });
 
