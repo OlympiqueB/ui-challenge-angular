@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Subscription } from 'rxjs';
 import { LoginCredentials } from 'src/app/core/models/loginCred.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
 
@@ -8,16 +9,26 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss'],
 })
-export class LoginFormComponent {
+export class LoginFormComponent implements OnDestroy {
   signInForm!: FormGroup;
   isFormSent: boolean = false;
   backendErrors: any;
+
+  inputChangeSubscription!: Subscription;
 
   constructor(private authService: AuthService) {
     this.signInForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
     });
+
+    this.inputChangeSubscription = this.signInForm.valueChanges.subscribe(
+      () => {
+        if (this.backendErrors) {
+          this.backendErrors = null;
+        }
+      }
+    );
   }
 
   submitForm() {
@@ -51,5 +62,11 @@ export class LoginFormComponent {
 
   get password() {
     return this.signInForm.get('password')?.value;
+  }
+
+  ngOnDestroy(): void {
+    if (this.inputChangeSubscription) {
+      this.inputChangeSubscription.unsubscribe();
+    }
   }
 }

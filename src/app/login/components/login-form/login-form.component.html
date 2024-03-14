@@ -28,6 +28,11 @@
         <label for="loginPassword">Password</label>
       </div>
 
+      <!-- Backend error only says ' not found', so I'm showing this instead -->
+      <div *ngIf="backendErrors" class="text-danger">
+        Invalid username or password.
+      </div>
+
       <div class="text-start"></div>
 
       <div class="errorDiv"></div>
