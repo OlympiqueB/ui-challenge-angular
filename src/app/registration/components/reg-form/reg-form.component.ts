@@ -6,6 +6,7 @@ import {
   ValidatorFn,
   Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { UserModel } from 'src/app/core/models/user.model';
 import { RegistrationService } from 'src/app/core/services/registration/registration.service';
@@ -24,7 +25,7 @@ export class RegFormComponent implements OnDestroy {
   emailInputSubscription?: Subscription;
   pwInputSubscription?: Subscription;
 
-  constructor(private regService: RegistrationService) {
+  constructor(private regService: RegistrationService, private router: Router) {
     this.regForm = new FormGroup({
       username: new FormControl('', [Validators.required]),
       email: new FormControl('', [Validators.required, Validators.email]),
@@ -88,12 +89,10 @@ export class RegFormComponent implements OnDestroy {
 
       this.regService.createUser(newUser).subscribe({
         next: (reply) => {
-          console.log(reply);
-          // navigate to thanks page or something
+          this.router.navigate(['thank-you'])
         },
         error: (err) => {
           this.backendErrors = err.error.errors;
-          console.log(err);
         },
         complete: () => {
           this.isFormSent = false;
