@@ -1,0 +1,115 @@
+<div class="container-fluid">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-center my-5">Registration</h1>
+    <form class="mb-3 col-12 col-sm-6 d-flex flex-column" [formGroup]="regForm">
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          class="form-control"
+          [class]="
+            username?.value && username?.touched
+              ? username?.valid && !(backendErrors && backendErrors.username)
+                ? 'is-valid'
+                : 'is-invalid'
+              : ''
+          "
+          id="usernameInput"
+          formControlName="username"
+          placeholder="Username"
+        />
+        <label for="usernameInput" class="form-label">Username</label>
+        <div
+          *ngIf="backendErrors && backendErrors.username"
+          class="invalid-feedback"
+        >
+          {{ backendErrors.username }}
+        </div>
+      </div>
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          class="form-control"
+          [class]="
+            email?.value && email?.touched
+              ? email?.valid
+                ? 'is-valid'
+                : 'is-invalid'
+              : ''
+          "
+          id="emailInput"
+          formControlName="email"
+          placeholder="Email"
+        />
+        <label for="emailInput" class="form-label">Email</label>
+      </div>
+      <small *ngIf="backendErrors && backendErrors.email" class="text-danger">
+        {{ backendErrors.email }}
+      </small>
+      <div class="form-floating mt-3">
+        <input
+          type="password"
+          class="form-control"
+          [class]="
+            password?.value && password?.touched
+              ? password?.valid
+                ? 'is-valid'
+                : 'is-invalid'
+              : ''
+          "
+          id="passwordInput"
+          formControlName="password"
+          placeholder="Password"
+        />
+        <label for="passwordInput" class="form-label">Password</label>
+      </div>
+      <small
+        *ngIf="backendErrors && backendErrors.password"
+        class="text-danger"
+      >
+        {{ backendErrors.password }}
+      </small>
+      <div class="form-floating mt-3">
+        <input
+          type="password"
+          class="form-control"
+          [class]="
+            confirmPassword?.value && confirmPassword?.touched
+              ? confirmPassword?.valid
+                ? 'is-valid'
+                : 'is-invalid'
+              : ''
+          "
+          id="confirmPasswordInput"
+          formControlName="confirmPassword"
+          placeholder="Confirm password"
+        />
+        <label for="confirmPasswordInput" class="form-label"
+          >Confirm password</label
+        >
+      </div>
+      <small
+        *ngIf="confirmPassword?.errors?.['passwordNotConfirmed'] && confirmPassword?.touched && confirmPassword?.value"
+        class="small text-danger"
+      >
+        Password does not match.
+      </small>
+      <button
+        type="click"
+        class="btn btn-primary mt-3"
+        (click)="submitForm()"
+        id="submitBtn"
+        [disabled]="regForm.invalid"
+      >
+        Submit
+      </button>
+    </form>
+
+    <button
+      type="click"
+      class="btn btn-outline-secondary col-12 col-sm-6"
+      [routerLink]="['/']"
+    >
+      Already have an account? Click here to log in.
+    </button>
+  </div>
+</div>
