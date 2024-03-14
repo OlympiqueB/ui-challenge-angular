@@ -25,17 +25,26 @@ export class AuthService {
     );
   }
 
-  getUser() {
+  getUser(): void {
     const token = localStorage.getItem('token');
 
     if (token) {
-      return this.http.get<UserDataModel>(`${BASE_URL}api/user`).pipe(
+      this.http.get<UserDataModel>(`${BASE_URL}api/user`).pipe(
         tap((userData) => {
           this._userObject.next(userData);
         })
       );
     } else {
-      return of(null);
+      this._userObject.next(null);
     }
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    this._userObject.next(null);
+  }
+
+  get userObject() {
+    return this._userObject;
   }
 }
