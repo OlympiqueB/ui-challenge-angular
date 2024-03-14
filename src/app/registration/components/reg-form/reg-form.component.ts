@@ -8,7 +8,7 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
-import { UserModel } from 'src/app/core/models/user.model';
+import { UserRegModel } from 'src/app/core/models/userReg.model';
 import { RegistrationService } from 'src/app/core/services/registration/registration.service';
 
 @Component({
@@ -81,7 +81,7 @@ export class RegFormComponent implements OnDestroy {
     this.isFormSent = true;
 
     if (this.regForm.valid) {
-      const newUser: UserModel = {
+      const newUser: UserRegModel = {
         username: this.username?.value,
         email: this.email?.value,
         password: this.password?.value,

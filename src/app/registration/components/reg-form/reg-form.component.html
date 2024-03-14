@@ -41,7 +41,10 @@
           placeholder="Email"
         />
         <label for="emailInput" class="form-label">Email</label>
-        <div *ngIf="backendErrors && backendErrors.email" class="invalid-feedback">
+        <div
+          *ngIf="backendErrors && backendErrors.email"
+          class="invalid-feedback"
+        >
           {{ backendErrors.email }}
         </div>
       </div>
@@ -62,11 +65,11 @@
         />
         <label for="passwordInput" class="form-label">Password</label>
         <div
-        *ngIf="backendErrors && backendErrors.password"
-        class="invalid-feedback"
-      >
-        {{ backendErrors.password }}
-      </div>
+          *ngIf="backendErrors && backendErrors.password"
+          class="invalid-feedback"
+        >
+          {{ backendErrors.password }}
+        </div>
       </div>
 
       <div class="form-floating mt-3">
@@ -88,11 +91,11 @@
           >Confirm password</label
         >
         <div
-        *ngIf="confirmPassword?.errors?.['passwordNotConfirmed'] && confirmPassword?.dirty && confirmPassword?.value"
-        class="invalid-feedback"
-      >
-        Password does not match.
-      </div>
+          *ngIf="confirmPassword?.errors?.['passwordNotConfirmed'] && confirmPassword?.dirty && confirmPassword?.value"
+          class="invalid-feedback"
+        >
+          Password does not match.
+        </div>
       </div>
 
       <button

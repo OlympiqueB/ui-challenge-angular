@@ -1,0 +1,54 @@
+<div class="container-fluid">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-center my-5">Log in</h1>
+    <form
+      class="mb-3 col-12 col-sm-6 d-flex flex-column"
+      [formGroup]="signInForm"
+    >
+      <div class="form-floating mt-3">
+        <input
+          type="text"
+          class="form-control"
+          formControlName="email"
+          id="loginEmail"
+          placeholder="Email"
+        />
+        <label for="loginEmail">Email</label>
+      </div>
+      <div class="text-start"></div>
+
+      <div class="form-floating mt-3">
+        <input
+          type="password"
+          class="form-control"
+          formControlName="password"
+          id="loginPassword"
+          placeholder="Password"
+        />
+        <label for="loginPassword">Password</label>
+      </div>
+
+      <div class="text-start"></div>
+
+      <div class="errorDiv"></div>
+
+      <button
+        class="btn btn-primary my-3"
+        type="click"
+        id="loginBtn"
+        (click)="submitForm()"
+        [disabled]="!signInForm.valid"
+      >
+        Sign in
+      </button>
+      <button
+        class="btn btn-outline-secondary"
+        type="click"
+        id="loginCreateAccountLink"
+        [routerLink]="['/']"
+      >
+        Don't have an account? Create one.
+      </button>
+    </form>
+  </div>
+</div>
