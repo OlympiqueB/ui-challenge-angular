@@ -1,5 +1,6 @@
 import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { LoginCredentials } from 'src/app/core/models/loginCred.model';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -16,7 +17,7 @@ export class LoginFormComponent implements OnDestroy {
 
   inputChangeSubscription!: Subscription;
 
-  constructor(private authService: AuthService) {
+  constructor(private authService: AuthService, private router: Router) {
     this.signInForm = new FormGroup({
       email: new FormControl('', [Validators.required]),
       password: new FormControl('', [Validators.required]),
@@ -43,7 +44,7 @@ export class LoginFormComponent implements OnDestroy {
 
       this.authService.signIn(loginCred).subscribe({
         next: (reply) => {
-          console.log(reply);
+          this.router.navigate(['/'])
         },
         error: (err) => {
           this.backendErrors = err;
