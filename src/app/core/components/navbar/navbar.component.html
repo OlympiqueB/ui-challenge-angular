@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-md bg-body-tertiary" data-bs-theme="dark">
+  <div class="container-md">
+    <a class="navbar-brand" [routerLink]="['/']">UiChallengeApp</a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarTogglerDemo02"
+      aria-controls="navbarTogglerDemo02"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Home</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/profile']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >My Profile</a
+          >
+        </li>
+        <li class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/admin']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Admin</a
+          >
+        </li>
+      </ul>
+
+      <ul  class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li *ngIf="!userObject" class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/registration']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Registration</a
+          >
+        </li>
+        <li *ngIf="!userObject" class="nav-item">
+          <a
+            class="nav-link"
+            [routerLink]="['/sign-in']"
+            routerLinkActive="active"
+            [routerLinkActiveOptions]="{ exact: true }"
+            >Sign in</a
+          >
+        </li>
+        <li *ngIf="userObject" class="nav-item">
+          <a class="nav-link" (click)="onSignOutClick()">Sign out</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

@@ -7,13 +7,14 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { AuthInterceptor } from './core/services/interceptor/authInterceptor.service';
 import { InitializerService } from './core/services/initializer/initializer.service';
+import { NavbarComponent } from './core/components/navbar/navbar.component';
 
 export function initializeApp(appInitializer: InitializerService) {
   return () => appInitializer.initializeApp();
 }
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, NavbarComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
