@@ -1,44 +1,40 @@
 <div class="container-md">
   <form *ngIf="userObject" [formGroup]="userDataForm" class="">
-    <fieldset>
-      <legend>Edit your profile</legend>
-      <div class="mb-3">
-        <label for="profileUsername" class="form-label">Username</label>
-        <input
-          type="text"
-          id="profileUsername"
-          class="form-control"
-          formControlName="username"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="profileEmailAddress" class="form-label"
-          >Email address</label
-        >
-        <input
-          type="text"
-          id="profileEmailAddress"
-          class="form-control"
-          formControlName="email"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="profileImage" class="form-label">Avatar</label>
-        <input
-          type="text"
-          id="profileImage"
-          class="form-control"
-          formControlName="image"
-        />
-      </div>
-      <div class="mb-3">
-        <label for="profileBio" class="form-label">Bio</label>
-        <textarea
-          class="form-control resize-none"
-          id="profileBio"
-          formControlName="bio"
-        ></textarea>
-      </div>
-    </fieldset>
+    <legend>Edit your profile</legend>
+    <div class="mb-3">
+      <label for="profileUsername" class="form-label">Username</label>
+      <input
+        type="text"
+        id="profileUsername"
+        class="form-control"
+        formControlName="username"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="profileEmailAddress" class="form-label">Email address</label>
+      <input
+        type="text"
+        id="profileEmailAddress"
+        class="form-control"
+        formControlName="email"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="profileImage" class="form-label">Avatar</label>
+      <input
+        type="text"
+        id="profileImage"
+        class="form-control"
+        formControlName="image"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="profileBio" class="form-label">Bio</label>
+      <textarea
+        class="form-control"
+        id="profileBio"
+        formControlName="bio"
+      ></textarea>
+    </div>
   </form>
 </div>
