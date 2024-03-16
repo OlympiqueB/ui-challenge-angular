@@ -1,0 +1,10 @@
+<div class="container-md">
+  <div *ngIf="articles && articles.length; else noArticles">
+    <app-article
+      *ngFor="let article of articles"
+      [articleData]="article"
+    ></app-article>
+  </div>
+
+  <ng-template #noArticles> There are no articles currently. </ng-template>
+</div>
