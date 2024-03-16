@@ -1,1 +1,29 @@
-<p>article works!</p>
+<div class="card">
+  <!-- <div class="card-header"></div> -->
+  <div class="card-body">
+    <h3 class="card-title">
+      {{ articleData.title }}
+    </h3>
+    <p class="card-subtitle mb-3">
+      <small class="text-body-secondary"
+        >By {{ articleData.author.username }}
+      </small>
+      <small class="text-body-secondary"> | </small>
+      <small class="text-body-secondary">
+        {{ articleData.created | date : "medium" }}
+      </small>
+      <small class="text-body-secondary"> | </small>
+      <small class="text-body-secondary">
+        Last updated: {{ articleData.created | date : "medium" }}
+      </small>
+    </p>
+    <p class="card-text">{{ articleData.description }}</p>
+  </div>
+  <div class="card-footer">
+    <span
+      *ngFor="let tag of articleData.tagList"
+      class="badge text-bg-secondary m-1"
+      >{{ tag }}</span
+    >
+  </div>
+</div>

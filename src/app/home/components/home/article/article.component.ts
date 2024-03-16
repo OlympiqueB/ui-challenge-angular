@@ -7,7 +7,7 @@ import { ArticleModel } from 'src/app/core/models/article.model';
   styleUrls: ['./article.component.scss'],
 })
 export class ArticleComponent {
-  @Input() articleData!: ArticleModel;
+  @Input() articleData!: any;
 
   constructor() {}
 }
