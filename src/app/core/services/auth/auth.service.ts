@@ -13,33 +13,35 @@ export class AuthService {
 
   private _userObject = new BehaviorSubject<UserDataModel | null>(null);
 
-  signIn(credentials: LoginCredentials): Observable<UserDataModel> {
+  signIn(credentials: LoginCredentials): Observable<any> {
     return this.http.post<any>(`${BASE_URL}api/login`, credentials).pipe(
       tap((userData) => {
-        if (userData.token) {
-          localStorage.setItem('token', userData.token);
-          this._userObject.next(userData);
+        const user: UserDataModel = userData.user;
+
+        if (user.token) {
+          localStorage.setItem('token', user.token);
+          this._userObject.next(user);
         }
-        console.log(userData);
       })
     );
   }
 
-  getUser(): void {
+  getUser() {
     const token = localStorage.getItem('token');
 
     if (token) {
-      this.http.get<UserDataModel>(`${BASE_URL}api/user`).pipe(
+      return this.http.get<any>(`${BASE_URL}api/user`).pipe(
         tap((userData) => {
-          this._userObject.next(userData);
+          const user: UserDataModel = userData.user;
+          this._userObject.next(user);
         })
       );
     } else {
-      this._userObject.next(null);
+      return of(null);
     }
   }
 
-  logout() {
+  logout(): void {
     localStorage.removeItem('token');
     this._userObject.next(null);
   }
