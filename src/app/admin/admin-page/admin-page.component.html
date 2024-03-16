@@ -1,0 +1,12 @@
+<div class="container-md">
+  <ul ngbNav #nav="ngbNav" [(activeId)]="route.fragment" class="nav-tabs">
+    <li ngbNavItem="users">
+      <a ngbNavLink routerLink="users">Users</a>
+    </li>
+    <li ngbNavItem="articles">
+      <a ngbNavLink routerLink="articles">Articles</a>
+    </li>
+  </ul>
+
+  <router-outlet></router-outlet>
+</div>
