@@ -1,0 +1,27 @@
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Slug</th>
+      <th>Created at</th>
+      <th>Updated at</th>
+      <th>Favorite count</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let article of articles">
+      <td>{{ article.id }}</td>
+      <td>{{ article.title }}</td>
+      <td>{{ article.description }}</td>
+      <td>{{ article.slug }}</td>
+      <td>{{ article.created }}</td>
+      <td>{{ article.updated }}</td>
+      <td>{{ article.favoriteCount }}</td>
+      <td>
+        <button class="btn btn-danger" (click)="onDeleteClick(article.slug)">X</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
