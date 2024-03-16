@@ -89,7 +89,7 @@ export class RegFormComponent implements OnDestroy {
 
       this.regService.createUser(newUser).subscribe({
         next: (reply) => {
-          this.router.navigate(['thank-you'])
+          this.router.navigate(['/registration/thank-you'])
         },
         error: (err) => {
           this.backendErrors = err.error.errors;
