@@ -23,16 +23,16 @@
             >Home</a
           >
         </li>
-        <li class="nav-item">
+        <li *ngIf="userObject" class="nav-item">
           <a
             class="nav-link"
-            [routerLink]="['/profile']"
+            [routerLink]="['/profile/' + userObject.username]"
             routerLinkActive="active"
             [routerLinkActiveOptions]="{ exact: true }"
             >My Profile</a
           >
         </li>
-        <li class="nav-item">
+        <li *ngIf="userObject" class="nav-item">
           <a
             class="nav-link"
             [routerLink]="['/admin']"
