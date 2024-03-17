@@ -2,11 +2,11 @@ import { Component, Input } from '@angular/core';
 import { ArticleModel } from 'src/app/core/models/article.model';
 
 @Component({
-  selector: 'app-article',
-  templateUrl: './article.component.html',
-  styleUrls: ['./article.component.scss'],
+  selector: 'app-article-card',
+  templateUrl: './article-card.component.html',
+  styleUrls: ['./article-card.component.scss'],
 })
-export class ArticleComponent {
+export class ArticleCardComponent {
   @Input() articleData!: any;
 
   constructor() {}
