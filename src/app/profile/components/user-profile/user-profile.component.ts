@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { Subscription } from 'rxjs';
-import { UserDataModel } from 'src/app/core/models/userData.model';
-import { AuthService } from 'src/app/core/services/auth/auth.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription, of, switchMap } from 'rxjs';
+import { ProfileData } from 'src/app/core/models/profile.model';
+import { ProfilesService } from 'src/app/core/services/profiles/profiles.service';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,38 +10,40 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit, OnDestroy {
-  userObject!: UserDataModel | null;
+  profileData!: ProfileData;
 
-  userDataForm!: FormGroup;
+  activeRouteSubscription!: Subscription;
 
-  userObjectSubscription!: Subscription;
-
-  constructor(private authService: AuthService) {
-    this.userObjectSubscription = this.authService.userObject.subscribe(
-      (user) => {
-        this.userObject = user;
-      }
-    );
+  constructor(
+    private profilesService: ProfilesService,
+    private activeRoute: ActivatedRoute,
+    private router: Router
+  ) {
+    this.activeRouteSubscription = this.activeRoute.params
+      .pipe(
+        switchMap((params) => {
+          const username = params['username'];
+          if (username) {
+            return this.profilesService.getProfileInfo(username);
+          } else {
+            return of(null);
+          }
+        })
+      )
+      .subscribe((data) => {
+        if (data) {
+          this.profileData = data.profile;
+        } else {
+          this.router.navigate(['/']);
+        }
+      });
   }
 
-  ngOnInit(): void {
-    this.userDataForm = new FormGroup({
-      username: new FormControl(
-        { value: this.userObject?.username, disabled: true },
-        [Validators.minLength(3)]
-      ),
-      email: new FormControl(
-        { value: this.userObject?.email, disabled: true },
-        [Validators.email]
-      ),
-      bio: new FormControl({ value: this.userObject?.bio, disabled: true }, []),
-      image: new FormControl({ value: this.userObject?.image, disabled: true }, []),
-    });
-  }
+  ngOnInit(): void {}
 
   ngOnDestroy(): void {
-    if (this.userObjectSubscription) {
-      this.userObjectSubscription.unsubscribe();
+    if (this.activeRouteSubscription) {
+      this.activeRouteSubscription.unsubscribe();
     }
   }
 }
