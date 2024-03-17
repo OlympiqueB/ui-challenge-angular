@@ -1,5 +1,5 @@
-<div *ngIf="profileData" class="container-md mt-2">
-  <div class="d-flex flex-column justify-content-center align-items-center">
+<div *ngIf="profileData" class="container-md pt-2 bg-body-secondary">
+  <div class="d-flex flex-column justify-content-center align-items-center pb-2">
     <div>
       <img *ngIf="profileData.image" [src]="profileData.image" alt="" />
       <img
@@ -9,7 +9,7 @@
       />
     </div>
     <h2 class="mt-2">{{ profileData.username }}</h2>
-    <div class="mt-2">
+    <div class="mt-1 w-75">
       <p *ngIf="profileData.bio" class="text-body-secondary">
         {{ profileData.bio }}
       </p>
@@ -17,5 +17,27 @@
         >This user has not provided a bio.</small
       >
     </div>
+
+    <button
+      *ngIf="loggedInUser === profileData.username"
+      class="btn btn-outline-dark mt-4"
+      [routerLink]="['edit']"
+    >
+      Edit Profile
+    </button>
+
+    <!-- following needs to be linked in here -->
+    <button
+      *ngIf="loggedInUser !== profileData.username && !profileData.following"
+      class="btn btn-outline-success"
+    >
+      Follow
+    </button>
+    <button
+      *ngIf="loggedInUser !== profileData.username && profileData.following"
+      class="btn btn-outline-danger"
+    >
+      Unfollow
+    </button>
   </div>
 </div>
