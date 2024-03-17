@@ -10,6 +10,10 @@ import { Observable } from 'rxjs';
 export class UsersService {
   constructor(private http: HttpClient) {}
 
+  updateUser(user: UserDataModel) {
+    return this.http.put<any>(`${BASE_URL}api/user`, user);
+  }
+
   getAllUsers(): Observable<UserDataModel[]> {
     return this.http.get<UserDataModel[]>(`${BASE_URL}api/users`)
   }
