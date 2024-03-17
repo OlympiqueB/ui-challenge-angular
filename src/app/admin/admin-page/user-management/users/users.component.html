@@ -1,10 +1,9 @@
-<table class="table table-striped">
+<table class="table table-striped mt-3">
   <thead>
     <tr>
       <th>ID</th>
       <th>Username</th>
       <th>Email</th>
-      <th>Bio</th>
       <th>Image</th>
       <th>Delete</th>
     </tr>
@@ -12,12 +11,25 @@
   <tbody>
     <tr *ngFor="let user of users">
       <td>{{ user.id }}</td>
-      <td>{{ user.username }}</td>
-      <td>{{ user.email }}</td>
-      <td>{{ user.bio }}</td>
-      <td>{{ user.image }}</td>
       <td>
-        <button class="btn btn-danger" (click)="onDeleteClick(user.email)">X</button>
+        <a [routerLink]="'/profile/' + user.username" target="_blank">{{
+          user.username
+        }}</a>
+      </td>
+      <td>{{ user.email }}</td>
+      <td>
+        <img *ngIf="user.image" [src]="user.image" alt="" height="150px" />
+        <img
+          *ngIf="!user.image"
+          src="../../../../assets/avatar-placeholder.png"
+          alt=""
+          height="35px"
+        />
+      </td>
+      <td>
+        <button class="btn btn-danger" (click)="onDeleteClick(user.email)">
+          X
+        </button>
       </td>
     </tr>
   </tbody>
