@@ -1,0 +1,55 @@
+<div class="container-md">
+  <div class="d-flex flex-column justify-content-center align-items-center">
+    <h1 class="text-center my-5">Edit your profile</h1>
+    <form
+      class="mb-3 col-12 col-sm-6 d-flex flex-column"
+      [formGroup]="editProfileForm"
+    >
+      <div class="mt-3">
+        <label for="editProfileUsername">Username</label>
+        <input
+          type="text"
+          class="form-control"
+          id="editProfileUsername"
+          formControlName="username"
+        />
+      </div>
+      <div class="mt-3">
+        <label for="editProfileEmail">Email</label>
+        <input
+          type="text"
+          class="form-control"
+          id="editProfileEmail"
+          formControlName="email"
+        />
+      </div>
+      <div class="mt-3">
+        <label for="editProfileImage">Image</label>
+        <input
+          type="text"
+          class="form-control"
+          id="editProfileImage"
+          formControlName="image"
+        />
+      </div>
+      <div class="mt-3">
+        <label for="editProfileBio">Bio</label>
+        <textarea
+          cdkTextareaAutosize
+          cdkAutosizeMinRows="1"
+          class="form-control"
+          id="editProfileBio"
+          formControlName="bio"
+        ></textarea>
+      </div>
+
+      <button
+        class="btn btn-outline-dark mt-3"
+        [disabled]="editProfileForm.invalid"
+        (click)="submitProfile()"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
