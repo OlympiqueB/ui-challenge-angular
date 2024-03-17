@@ -1,8 +1,8 @@
 export interface UserDataModel {
-  bio: string;
-  email: string;
-  id: number;
-  image: string;
-  token: string;
-  username: string;
+	id: number;
+	username: string;
+	email: string;
+	token: string;
+	bio: string;
+	image?: string;
 }
