@@ -9,13 +9,14 @@ import { AuthInterceptor } from './core/services/interceptor/authInterceptor.ser
 import { InitializerService } from './core/services/initializer/initializer.service';
 import { NavbarComponent } from './core/components/navbar/navbar.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastsComponent } from './core/components/toasts/toasts.component';
 
 export function initializeApp(appInitializer: InitializerService) {
   return () => appInitializer.initializeApp();
 }
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent],
+  declarations: [AppComponent, NavbarComponent, ToastsComponent],
   imports: [BrowserModule, AppRoutingModule, NgbModule, HttpClientModule, BrowserAnimationsModule],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
