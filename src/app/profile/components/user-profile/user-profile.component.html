@@ -12,7 +12,7 @@
     </div>
     <h2 class="mt-2">{{ profileData.username }}</h2>
     <div class="mt-1 w-75 text-center">
-      <p *ngIf="profileData.bio" class="text-body-secondary">
+      <p *ngIf="profileData.bio" class="text-body-secondary pre-wrap">
         {{ profileData.bio }}
       </p>
       <small class="text-body-secondary" *ngIf="!profileData.bio"

@@ -30,6 +30,11 @@ const routes: Routes = [
       import('./admin/admin.module').then((m) => m.AdminModule),
   },
   {
+    path: 'article',
+    loadChildren: () =>
+      import('./article/article.module').then((m) => m.ArticleModule),
+  },
+  {
     path: '**',
     redirectTo: '',
   },

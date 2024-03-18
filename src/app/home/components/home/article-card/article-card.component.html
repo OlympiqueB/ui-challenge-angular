@@ -1,12 +1,17 @@
 <div class="card">
   <!-- <div class="card-header"></div> -->
   <div class="card-body">
-    <h3 class="card-title">
-      {{ articleData.title }}
-    </h3>
+    <a class="link-dark" [routerLink]="'/article/' + articleData.slug">
+      <h3 class="card-title">
+        {{ articleData.title }}
+      </h3></a
+    >
     <p class="card-subtitle mb-3">
       <small class="text-body-secondary"
-        >By {{ articleData.author.username }}
+        >By
+        <a class="link-dark" [routerLink]="'/profile/' + articleData.author.username" target="_blank">{{
+          articleData.author.username
+        }}</a>
       </small>
       <small class="text-body-secondary"> | </small>
       <small class="text-body-secondary">
