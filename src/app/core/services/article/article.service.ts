@@ -21,11 +21,15 @@ export class ArticleService {
     return this.http.get<any>(`${BASE_URL}api/articles/${slug}`);
   }
 
-
+  updateArticle(slug: string, updatedArticle: ArticleModel) {
+    return this.http.put<any>(
+      `${BASE_URL}api/articles/${slug}`,
+      updatedArticle
+    );
+  }
 
   deleteArticle(slug: string) {
     return this.http.delete<any>(`${BASE_URL}api/articles/${slug}`);
-
   }
 
   getComments(slug: string) {
