@@ -14,6 +14,7 @@ import {
   MatChipsModule,
 } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { MatIconModule } from '@angular/material/icon';
     MatFormFieldModule,
     MatChipsModule,
     MatIconModule,
+    TextFieldModule
   ],
 })
 export class AdminModule {}
