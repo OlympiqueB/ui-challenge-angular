@@ -1,5 +1,7 @@
 <div *ngIf="profileData" class="container-md pt-2 bg-body-secondary">
-  <div class="d-flex flex-column justify-content-center align-items-center pb-2">
+  <div
+    class="d-flex flex-column justify-content-center align-items-center pb-2"
+  >
     <div>
       <img *ngIf="profileData.image" [src]="profileData.image" alt="" />
       <img
@@ -9,7 +11,7 @@
       />
     </div>
     <h2 class="mt-2">{{ profileData.username }}</h2>
-    <div class="mt-1 w-75">
+    <div class="mt-1 w-75 text-center">
       <p *ngIf="profileData.bio" class="text-body-secondary">
         {{ profileData.bio }}
       </p>
@@ -29,13 +31,13 @@
     <!-- following needs to be linked in here -->
     <button
       *ngIf="loggedInUser !== profileData.username && !profileData.following"
-      class="btn btn-outline-success"
+      class="btn btn-outline-success mt-4"
     >
       Follow
     </button>
     <button
       *ngIf="loggedInUser !== profileData.username && profileData.following"
-      class="btn btn-outline-danger"
+      class="btn btn-outline-danger mt-4"
     >
       Unfollow
     </button>
