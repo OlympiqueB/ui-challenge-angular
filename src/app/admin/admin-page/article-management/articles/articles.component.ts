@@ -1,4 +1,5 @@
 import { Component, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { ArticleModel } from 'src/app/core/models/article.model';
 import { ArticleService } from 'src/app/core/services/article/article.service';
@@ -13,7 +14,7 @@ export class ArticlesComponent implements OnDestroy {
 
   articlesSubscription!: Subscription;
 
-  constructor(private articleService: ArticleService) {
+  constructor(private articleService: ArticleService, private router: Router) {
     this.getArticles();
   }
 
@@ -27,6 +28,10 @@ export class ArticlesComponent implements OnDestroy {
       },
       complete: () => {},
     });
+  }
+
+  onUpdateClick(slug: string) {
+    this.router.navigate(['/admin/edit-article/' + slug])
   }
 
   onDeleteClick(slug: string) {

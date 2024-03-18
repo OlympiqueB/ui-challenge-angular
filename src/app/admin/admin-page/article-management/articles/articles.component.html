@@ -16,11 +16,22 @@
       <td>{{ article.title }}</td>
       <td>{{ article.description }}</td>
       <td>{{ article.slug }}</td>
-      <td>{{ article.created }}</td>
-      <td>{{ article.updated }}</td>
+      <td>{{ article.created | date : "medium" }}</td>
+      <td>{{ article.updated | date : "medium" }}</td>
       <td>{{ article.favoriteCount }}</td>
       <td>
-        <button class="btn btn-danger" (click)="onDeleteClick(article.slug)">X</button>
+        <button
+          class="btn btn-outline-success"
+          (click)="onUpdateClick(article.slug)"
+        >
+          Update
+        </button>
+        <button
+          class="btn btn-outline-danger"
+          (click)="onDeleteClick(article.slug)"
+        >
+          Delete
+        </button>
       </td>
     </tr>
   </tbody>
