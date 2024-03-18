@@ -1,5 +1,5 @@
 import { AuthService } from './../../../core/services/auth/auth.service';
-import { Component } from '@angular/core';
+import { Component, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { UserDataModel } from 'src/app/core/models/userData.model';
@@ -12,12 +12,14 @@ import { ToastService } from 'src/app/core/services/toast/toast.service';
   templateUrl: './edit-profile.component.html',
   styleUrls: ['./edit-profile.component.scss'],
 })
-export class EditProfileComponent {
+export class EditProfileComponent implements OnDestroy {
   editProfileForm!: FormGroup;
 
   isFormSent: boolean = false;
 
   userObject: UserDataModel | null;
+
+  updateUserSubscription!: Subscription;
 
   constructor(
     private authService: AuthService,
@@ -59,26 +61,28 @@ export class EditProfileComponent {
         bio: this.bio?.value,
       };
 
-      this.usersService.updateUser(updatedUser).subscribe({
-        next: (reply) => {
-          this.router.navigate(['/profile/' + reply.username]);
-          this.authService.userObject.next(reply);
-          this.toast.show({
-            text: 'Profile updated successfully.',
-            classname: 'bg-success text-light fs-5',
-          });
-        },
-        error: (err) => {
-          console.log(err);
-          this.toast.show({
-            text: err.error,
-            classname: 'bg-danger text-light fs-5',
-          });
-        },
-        complete: () => {
-          this.isFormSent = false;
-        },
-      });
+      this.updateUserSubscription = this.usersService
+        .updateUser(updatedUser)
+        .subscribe({
+          next: (reply) => {
+            this.router.navigate(['/profile/' + reply.username]);
+            this.authService.userObject.next(reply);
+            this.toast.show({
+              text: 'Profile updated successfully.',
+              classname: 'bg-success text-light fs-5',
+            });
+          },
+          error: (err) => {
+            console.log(err);
+            this.toast.show({
+              text: err.error,
+              classname: 'bg-danger text-light fs-5',
+            });
+          },
+          complete: () => {
+            this.isFormSent = false;
+          },
+        });
     }
   }
 
@@ -96,5 +100,11 @@ export class EditProfileComponent {
 
   get image() {
     return this.editProfileForm.get('image');
+  }
+
+  ngOnDestroy(): void {
+    if (this.updateUserSubscription) {
+      this.updateUserSubscription.unsubscribe();
+    }
   }
 }
